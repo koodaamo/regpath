@@ -218,9 +218,17 @@ class RegistryPath(pathlib.PureWindowsPath, collections.abc.MutableMapping):
         self.open(access=winreg.KEY_WRITE)
         return winreg.SetValueEx(self.handle, value_name, reserved, type, value)
 
-    # DisableReflectionKey(key)
-    # EnableReflectionKey(key)
-    # QueryReflectionKey(key)
+    def DisableReflectionKey(self):
+        self.open()
+        return winreg.DisableReflectionKey(self.handle)
+
+    def EnableReflectionKey(self):
+        self.open()
+        return winreg.EnableReflectionKey(self.handle)
+    
+    def QueryReflectionKey(self):
+        self.open()
+        return winreg.QueryReflectionKey(self.handle)
 
     #
     # Win32API interface
